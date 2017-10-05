@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vidly.Web.Models;
+using Vidly.Web.ViewModel;
 
 namespace Vidly.Web.Controllers
 {
@@ -11,12 +14,25 @@ namespace Vidly.Web.Controllers
         // GET: Movies
         public ActionResult Random()
         {
-            return View();
+            var movie = new Movie() { Name = "Shrek!" };
+            var customers = new List<Customer>() {
+                new Customer { Name = "Christopher"},
+                new Customer { Name = "Juana"}
+            };
+
+            var randomviewmodel = new RandomMovieViewModel
+            {
+
+                Customers = customers,
+                Movie = movie
+            };
+
+            return View(randomviewmodel);
         }
 
         public ActionResult ByReleaseDate(int year, int month)
         {
-            return Content(year +" "+ month);
+            return Content(year + " " + month);
         }
     }
 }
