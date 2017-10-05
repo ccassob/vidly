@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidly.Web", "Vidly.Web\Vidly.Web.csproj", "{4EFFCCCA-0EF1-448A-AE90-984A6932ECCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidly.WebApp", "Vidly.WebApp\Vidly.WebApp.csproj", "{12D8E43C-6B99-4968-821C-07113777D602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4EFFCCCA-0EF1-448A-AE90-984A6932ECCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EFFCCCA-0EF1-448A-AE90-984A6932ECCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EFFCCCA-0EF1-448A-AE90-984A6932ECCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EFFCCCA-0EF1-448A-AE90-984A6932ECCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12D8E43C-6B99-4968-821C-07113777D602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12D8E43C-6B99-4968-821C-07113777D602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12D8E43C-6B99-4968-821C-07113777D602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12D8E43C-6B99-4968-821C-07113777D602}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
