@@ -48,6 +48,17 @@ namespace Vidly.Web.Controllers
             return View(randomviewmodel);
         }
 
+        [HttpGet]
+        public ActionResult Save()
+        {
+
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + " " + month);

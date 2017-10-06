@@ -45,7 +45,7 @@ namespace Vidly.WebApp.Controllers
         {
             var memberShipTypes = _context.MemberShipTypes.ToList();
 
-            var newCustomerViewModel = new NewCustomerViewModel()
+            var newCustomerViewModel = new CustomerFormViewModel()
             {
                 MemberShipTypes = memberShipTypes
             };
@@ -55,7 +55,7 @@ namespace Vidly.WebApp.Controllers
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Save(NewCustomerViewModel model)
+        public ActionResult Save(CustomerFormViewModel model)
         {
             if (model.Customers.Id == 0)
             {
@@ -82,7 +82,7 @@ namespace Vidly.WebApp.Controllers
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            var newCustomerViewModel = new NewCustomerViewModel()
+            var newCustomerViewModel = new CustomerFormViewModel()
             {
                 Customers = customer,
                 MemberShipTypes = _context.MemberShipTypes

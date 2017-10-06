@@ -7,7 +7,6 @@ namespace Vidly.WebApp.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Genre { get; set; }
         [Display(Name = "Date Added")]
         [DataType(DataType.Date)]
         public DateTime DateAdded{ get; set; }
