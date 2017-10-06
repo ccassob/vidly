@@ -241,6 +241,14 @@
     <Compile Include="Migrations\201710062106049_CreatedTableGenreType.Designer.cs">
       <DependentUpon>201710062106049_CreatedTableGenreType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710062111415_AddAssociationOfGenreTypeAndMovie.cs" />
+    <Compile Include="Migrations\201710062111415_AddAssociationOfGenreTypeAndMovie.Designer.cs">
+      <DependentUpon>201710062111415_AddAssociationOfGenreTypeAndMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710062119404_AddingNewChanges.cs" />
+    <Compile Include="Migrations\201710062119404_AddingNewChanges.Designer.cs">
+      <DependentUpon>201710062119404_AddingNewChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -376,6 +384,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710062106049_CreatedTableGenreType.resx">
       <DependentUpon>201710062106049_CreatedTableGenreType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710062111415_AddAssociationOfGenreTypeAndMovie.resx">
+      <DependentUpon>201710062111415_AddAssociationOfGenreTypeAndMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710062119404_AddingNewChanges.resx">
+      <DependentUpon>201710062119404_AddingNewChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

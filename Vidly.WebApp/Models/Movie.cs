@@ -12,5 +12,7 @@ namespace Vidly.WebApp.Models
         public DateTime DateAdded{ get; set; }
         [Display(Name = "Numbers in Stock")]
         public int Stock { get; set; }
+        public byte GenreTypeId { get; set; }
+
     }
 }

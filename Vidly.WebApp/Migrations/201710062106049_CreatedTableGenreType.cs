@@ -16,11 +16,6 @@ namespace Vidly.WebApp.Migrations
                     })
                 .PrimaryKey(t => t.Id);
 
-            Sql("INSERT INTO dbo.GenreTypes (Name) VALUES ('Comedy')");
-            Sql("INSERT INTO dbo.GenreTypes (Name) VALUES ('Action')");
-            Sql("INSERT INTO dbo.GenreTypes (Name) VALUES ('Romance')");
-            Sql("INSERT INTO dbo.GenreTypes (Name) VALUES ('Family')");
-
             DropColumn("dbo.Movies", "Genre");
         }
         
