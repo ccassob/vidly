@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.WebApp.Models;
+using Vidly.WebApp.ViewModel;
 
 namespace Vidly.WebApp.Controllers
 {
@@ -21,6 +22,7 @@ namespace Vidly.WebApp.Controllers
         }
 
         // GET: Customer
+        [HttpGet]
         public ActionResult Index()
         {
             var customer = _context.Customers.Include(c => c.MemberShipType).ToList();
@@ -38,50 +40,62 @@ namespace Vidly.WebApp.Controllers
         }
 
         // GET: Customer/Create
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult New()
         {
-            return View();
+            var memberShipTypes = _context.MemberShipTypes.ToList();
+
+            var newCustomerViewModel = new NewCustomerViewModel()
+            {
+                MemberShipTypes = memberShipTypes
+            };
+
+            return View("CustomerForm", newCustomerViewModel);
         }
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Save(NewCustomerViewModel model)
         {
-            try
+            if (model.Customers.Id == 0)
             {
-                return RedirectToAction("Index");
+                _context.Customers.Add(model.Customers);
             }
-            catch
+            else
             {
-                return View();
+                var customerInDb = _context.Customers.Single(c => c.Id == model.Customers.Id);
+                customerInDb.Name = model.Customers.Name;
+                customerInDb.BirthDate = model.Customers.BirthDate;
+                customerInDb.MemberShipTypeId = model.Customers.MemberShipTypeId;
+                customerInDb.IsSubscribedToNewsletter = model.Customers.IsSubscribedToNewsletter;
             }
+
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index");
         }
 
         // GET: Customer/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            var customer = _context.Customers.Include(c => c.MemberShipType).SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            return View(customer);
-        }
-
-        // POST: Customer/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
+            var newCustomerViewModel = new NewCustomerViewModel()
             {
-                // TODO: Add update logic here
+                Customers = customer,
+                MemberShipTypes = _context.MemberShipTypes
+            };
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            if (customer == null)
+                return HttpNotFound();
+
+            return View("CustomerForm", newCustomerViewModel);
         }
 
         // GET: Customer/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
