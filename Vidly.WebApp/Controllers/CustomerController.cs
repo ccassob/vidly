@@ -5,6 +5,7 @@ using Vidly.WebApp.Models;
 
 namespace Vidly.WebApp.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CustomerController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -31,7 +32,7 @@ namespace Vidly.WebApp.Controllers
         public ActionResult Details(int id)
         {
 
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MemberShipType).SingleOrDefault(c => c.Id == id);
 
             return View(customer);
         }
@@ -59,7 +60,7 @@ namespace Vidly.WebApp.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MemberShipType).SingleOrDefault(c => c.Id == id);
 
             return View(customer);
         }

@@ -217,8 +217,25 @@
     <Compile Include="Migrations\201710051926012_AddCustomerConventions.Designer.cs">
       <DependentUpon>201710051926012_AddCustomerConventions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710052024188_AddNameToMembershiptype.cs" />
+    <Compile Include="Migrations\201710052024188_AddNameToMembershiptype.Designer.cs">
+      <DependentUpon>201710052024188_AddNameToMembershiptype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710052028363_UpdateNamesOfMembershiptypes.cs" />
+    <Compile Include="Migrations\201710052028363_UpdateNamesOfMembershiptypes.Designer.cs">
+      <DependentUpon>201710052028363_UpdateNamesOfMembershiptypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710052054248_AddBirthdate.cs" />
+    <Compile Include="Migrations\201710052054248_AddBirthdate.Designer.cs">
+      <DependentUpon>201710052054248_AddBirthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710061245167_AddNewPropertiesToMovie.cs" />
+    <Compile Include="Migrations\201710061245167_AddNewPropertiesToMovie.Designer.cs">
+      <DependentUpon>201710061245167_AddNewPropertiesToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -291,6 +308,8 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,6 +342,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710051926012_AddCustomerConventions.resx">
       <DependentUpon>201710051926012_AddCustomerConventions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710052024188_AddNameToMembershiptype.resx">
+      <DependentUpon>201710052024188_AddNameToMembershiptype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710052028363_UpdateNamesOfMembershiptypes.resx">
+      <DependentUpon>201710052028363_UpdateNamesOfMembershiptypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710052054248_AddBirthdate.resx">
+      <DependentUpon>201710052054248_AddBirthdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061245167_AddNewPropertiesToMovie.resx">
+      <DependentUpon>201710061245167_AddNewPropertiesToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,6 +12,8 @@ namespace Vidly.WebApp.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime BirthDate{ get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
         public MemberShipType MemberShipType{ get; set; }
         public byte MemberShipTypeId { get; set; }
