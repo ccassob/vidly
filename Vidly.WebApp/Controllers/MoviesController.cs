@@ -68,10 +68,9 @@ namespace Vidly.Web.Controllers
             var genretypes = _context.GenreTypes.ToList();
             var movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
 
-            var model = new MovieFormViewModel()
+            var model = new MovieFormViewModel(movie)
             {
                 GenreTypes = genretypes,
-                Movies = movie
             };
 
             return View("MoviesCreateForm", model);
@@ -79,19 +78,33 @@ namespace Vidly.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult Save(MovieFormViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Movie model)
         {
-            if (model.Movies.Id == 0)
+            if (!ModelState.IsValid)
             {
-                _context.Movies.Add(model.Movies);
+                var genretypes = _context.GenreTypes.ToList();
+
+                var movieCreateModel = new MovieFormViewModel(model)
+                {
+                    GenreTypes = genretypes,
+                };
+
+                return View("MoviesCreateForm", movieCreateModel);
+
+            }
+
+            if (model.Id == 0)
+            {
+                _context.Movies.Add(model);
             }
             else
             {
-                var customerInDb = _context.Movies.Single(c => c.Id == model.Movies.Id);
-                customerInDb.Name = model.Movies.Name;
-                customerInDb.Stock = model.Movies.Stock;
-                customerInDb.DateAdded = model.Movies.DateAdded;
-                customerInDb.GenreTypeId = model.Movies.GenreTypeId;
+                var customerInDb = _context.Movies.Single(c => c.Id == model.Id);
+                customerInDb.Name = model.Name;
+                customerInDb.Stock = model.Stock;
+                customerInDb.DateAdded = model.DateAdded;
+                customerInDb.GenreTypeId = model.GenreTypeId;
             }
 
             _context.SaveChanges();

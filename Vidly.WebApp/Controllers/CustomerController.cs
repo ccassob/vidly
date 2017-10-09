@@ -47,7 +47,7 @@ namespace Vidly.WebApp.Controllers
 
             var newCustomerViewModel = new CustomerFormViewModel()
             {
-                MemberShipTypes = memberShipTypes
+                MemberShipTypes = memberShipTypes,
             };
 
             return View("CustomerForm", newCustomerViewModel);
@@ -55,19 +55,33 @@ namespace Vidly.WebApp.Controllers
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Save(CustomerFormViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Customer model)
         {
-            if (model.Customers.Id == 0)
+
+            if (!ModelState.IsValid)
             {
-                _context.Customers.Add(model.Customers);
+                var memberShipTypes = _context.MemberShipTypes.ToList();
+                var customerformviewmodel = new CustomerFormViewModel()
+                {
+                    MemberShipTypes = memberShipTypes
+                };
+
+
+                return View("CustomerForm", memberShipTypes);
+            }
+
+            if (model.Id == 0)
+            {
+                _context.Customers.Add(model);
             }
             else
             {
-                var customerInDb = _context.Customers.Single(c => c.Id == model.Customers.Id);
-                customerInDb.Name = model.Customers.Name;
-                customerInDb.BirthDate = model.Customers.BirthDate;
-                customerInDb.MemberShipTypeId = model.Customers.MemberShipTypeId;
-                customerInDb.IsSubscribedToNewsletter = model.Customers.IsSubscribedToNewsletter;
+                var customerInDb = _context.Customers.Single(c => c.Id == model.Id);
+                customerInDb.Name = model.Name;
+                customerInDb.BirthDate = model.BirthDate;
+                customerInDb.MemberShipTypeId = model.MemberShipTypeId;
+                customerInDb.IsSubscribedToNewsletter = model.IsSubscribedToNewsletter;
             }
 
             _context.SaveChanges();
@@ -82,9 +96,8 @@ namespace Vidly.WebApp.Controllers
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            var newCustomerViewModel = new CustomerFormViewModel()
+            var newCustomerViewModel = new CustomerFormViewModel(customer)
             {
-                Customers = customer,
                 MemberShipTypes = _context.MemberShipTypes
             };
 
@@ -92,31 +105,6 @@ namespace Vidly.WebApp.Controllers
                 return HttpNotFound();
 
             return View("CustomerForm", newCustomerViewModel);
-        }
-
-        // GET: Customer/Delete/5
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-
-            return View(customer);
-        }
-
-        // POST: Customer/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

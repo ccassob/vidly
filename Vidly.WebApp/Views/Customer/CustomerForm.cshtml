@@ -1,32 +1,40 @@
 ﻿@model Vidly.WebApp.ViewModel.CustomerFormViewModel
 
 @{
-    ViewBag.Title = "Create Customer";
+    ViewBag.Title = Model.Title;
 }
 
-<h2>Create Customer</h2>
+<h2>@Model.Title Customer</h2>
 
 @using (Html.BeginForm("Save", "Customer"))
 {
     <div class="form-group">
-        @Html.HiddenFor(c => c.Customers.Id)
+        @Html.ValidationSummary(true, "Please fix this errors.")
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.Customers.Name)
-        @Html.TextBoxFor( c => c.Customers.Name, new {@class = "form-control"})
+        @Html.ValidationMessageFor(c => c.Id)
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.Customers.BirthDate)
-        @Html.TextBoxFor(c => c.Customers.BirthDate,"{0:dd/MM/yyyy}",  new { @class = "form-control" })
+        @Html.LabelFor(c => c.Name)
+        @Html.TextBoxFor( c => c.Name, new {@class = "form-control"})
+        @Html.ValidationMessageFor(c => c.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.MemberShipTypeId)
+        @Html.DropDownListFor(c => c.MemberShipTypeId, new SelectList(Model.MemberShipTypes, "Id", "Name"), "Select MemberShip Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.MemberShipTypeId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.BirthDate)
+        @Html.TextBoxFor(c => c.BirthDate,"{0:dd MMM yyyy}",  new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.BirthDate)
+
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customers.MemberShipTypeId)
-        @Html.DropDownListFor(c => c.Customers.MemberShipTypeId, new SelectList(Model.MemberShipTypes, "Id", "Name"), "Select MemberShip Type", new {@class = "form-control" })
-    </div>
+   
     <div class="form-group">
         <div class="form-inline">
-            @Html.CheckBoxFor(c => c.Customers.IsSubscribedToNewsletter, new { @class = "checkbox" })
+            @Html.CheckBoxFor(c => c.IsSubscribedToNewsletter, new { @class = "checkbox" })
             Suscribed to newsletters?
         </div>
 
@@ -34,7 +42,8 @@
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-primary" />
     </div>
-
+    @Html.HiddenFor(c => c.Id)
+    @Html.AntiForgeryToken()
 }
 
 @section Scripts {
