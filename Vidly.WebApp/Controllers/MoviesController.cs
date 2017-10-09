@@ -27,28 +27,6 @@ namespace Vidly.Web.Controllers
             return View(model);
         }
 
-        // GET: Movies
-        public ActionResult Random()
-        {
-            var movies = _context.Movies.ToList();
-
-            var movie = new Movie() { Name = "Shrek!" };
-
-            var customers = new List<Customer>() {
-                new Customer { Name = "Christopher"},
-                new Customer { Name = "Juana"}
-            };
-
-            var randomviewmodel = new RandomMovieViewModel
-            {
-
-                Customers = customers,
-                Movie = movie
-            };
-
-            return View(randomviewmodel);
-        }
-
         [HttpGet]
         public ActionResult New()
         {
@@ -75,7 +53,6 @@ namespace Vidly.Web.Controllers
 
             return View("MoviesCreateForm", model);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -112,18 +89,6 @@ namespace Vidly.Web.Controllers
 
             return RedirectToAction("Index");
 
-        }
-
-        public ActionResult ByReleaseDate(int year, int month)
-        {
-            return Content(year + " " + month);
-        }
-
-        public ActionResult Details(int id)
-        {
-            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
-
-            return View(movie);
         }
     }
 }
