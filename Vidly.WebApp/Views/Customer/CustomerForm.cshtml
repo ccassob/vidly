@@ -1,10 +1,10 @@
 ﻿@model Vidly.WebApp.ViewModel.CustomerFormViewModel
 
 @{
-    ViewBag.Title = "Create New Customer";
+    ViewBag.Title = "Create Customer";
 }
 
-<h2>Create New Customer</h2>
+<h2>Create Customer</h2>
 
 @using (Html.BeginForm("Save", "Customer"))
 {
@@ -24,21 +24,18 @@
         @Html.LabelFor(c => c.Customers.MemberShipTypeId)
         @Html.DropDownListFor(c => c.Customers.MemberShipTypeId, new SelectList(Model.MemberShipTypes, "Id", "Name"), "Select MemberShip Type", new {@class = "form-control" })
     </div>
-    <div class="form-inline">
-        @Html.CheckBoxFor(c => c.Customers.IsSubscribedToNewsletter, new { @class = "checkbox" })
-        Suscribed to newsletters?
+    <div class="form-group">
+        <div class="form-inline">
+            @Html.CheckBoxFor(c => c.Customers.IsSubscribedToNewsletter, new { @class = "checkbox" })
+            Suscribed to newsletters?
+        </div>
+
     </div>
     <div class="form-group">
-  </div>
-<button type="submit" class="btn btn-primary">Save</button>
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
 
 }
-
-
-<div >
-
-
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.WebApp.Models;
@@ -21,9 +22,9 @@ namespace Vidly.Web.Controllers
 
         public ActionResult Index()
         {
-            var movies = _context.Movies.ToList();
+            var model = _context.Movies.Include(h => h.GenreType).ToList();
 
-            return View(movies);
+            return View(model);
         }
 
         // GET: Movies
@@ -49,15 +50,56 @@ namespace Vidly.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Save()
+        public ActionResult New()
         {
+            var genretypes = _context.GenreTypes.ToList();
 
+            var model = new MovieFormViewModel()
+            {
+                GenreTypes = genretypes
+            };
 
-            return RedirectToAction("Index");
+            return View("MoviesCreateForm", model);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int Id)
+        {
+            var genretypes = _context.GenreTypes.ToList();
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
+
+            var model = new MovieFormViewModel()
+            {
+                GenreTypes = genretypes,
+                Movies = movie
+            };
+
+            return View("MoviesCreateForm", model);
         }
 
 
+        [HttpPost]
+        public ActionResult Save(MovieFormViewModel model)
+        {
+            if (model.Movies.Id == 0)
+            {
+                _context.Movies.Add(model.Movies);
+            }
+            else
+            {
+                var customerInDb = _context.Movies.Single(c => c.Id == model.Movies.Id);
+                customerInDb.Name = model.Movies.Name;
+                customerInDb.Stock = model.Movies.Stock;
+                customerInDb.DateAdded = model.Movies.DateAdded;
+                customerInDb.GenreTypeId = model.Movies.GenreTypeId;
+            }
 
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index");
+
+        }
 
         public ActionResult ByReleaseDate(int year, int month)
         {

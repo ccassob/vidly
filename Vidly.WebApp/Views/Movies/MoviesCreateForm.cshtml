@@ -1,0 +1,50 @@
+﻿@model Vidly.WebApp.ViewModel.MovieFormViewModel
+
+@{
+    ViewBag.Title = "Create Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Movie</h2>
+
+@using (Html.BeginForm("Save", "Movies"))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.HiddenFor(m => m.Movies.Id)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movies.Name)
+            @Html.TextBoxFor(model => model.Movies.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Movies.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movies.Stock)
+            @Html.TextBoxFor(model => model.Movies.Stock, new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.Movies.Stock, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movies.DateAdded)
+            @Html.TextBoxFor(c => c.Movies.DateAdded, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movies.GenreTypeId)
+            @Html.DropDownListFor(c => c.Movies.GenreTypeId, new SelectList(Model.GenreTypes, "Id", "Name"), "Select Genre Type", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Movies.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
