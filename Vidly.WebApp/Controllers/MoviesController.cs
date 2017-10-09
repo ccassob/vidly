@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.WebApp.Models;
@@ -15,6 +14,7 @@ namespace Vidly.Web.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
@@ -32,8 +32,7 @@ namespace Vidly.Web.Controllers
         {
             var genretypes = _context.GenreTypes.ToList();
 
-            var model = new MovieFormViewModel()
-            {
+            var model = new MovieFormViewModel() {
                 GenreTypes = genretypes
             };
 
@@ -46,8 +45,7 @@ namespace Vidly.Web.Controllers
             var genretypes = _context.GenreTypes.ToList();
             var movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
 
-            var model = new MovieFormViewModel(movie)
-            {
+            var model = new MovieFormViewModel(movie) {
                 GenreTypes = genretypes,
             };
 
@@ -62,21 +60,17 @@ namespace Vidly.Web.Controllers
             {
                 var genretypes = _context.GenreTypes.ToList();
 
-                var movieCreateModel = new MovieFormViewModel(model)
-                {
-                    GenreTypes = genretypes,
+                var movieCreateModel = new MovieFormViewModel(model) {
+                    GenreTypes = genretypes
                 };
 
                 return View("MoviesCreateForm", movieCreateModel);
-
             }
 
-            if (model.Id == 0)
-            {
+            if (model.Id == 0) {
                 _context.Movies.Add(model);
             }
-            else
-            {
+            else {
                 var customerInDb = _context.Movies.Single(c => c.Id == model.Id);
                 customerInDb.Name = model.Name;
                 customerInDb.Stock = model.Stock;
@@ -86,9 +80,7 @@ namespace Vidly.Web.Controllers
 
             _context.SaveChanges();
 
-
             return RedirectToAction("Index");
-
         }
     }
 }

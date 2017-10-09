@@ -33,7 +33,6 @@ namespace Vidly.WebApp.Controllers
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-
             var customer = _context.Customers.Include(c => c.MemberShipType).SingleOrDefault(c => c.Id == id);
 
             return View(customer);
@@ -58,7 +57,6 @@ namespace Vidly.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer model)
         {
-
             if (!ModelState.IsValid)
             {
                 var memberShipTypes = _context.MemberShipTypes.ToList();
@@ -66,7 +64,6 @@ namespace Vidly.WebApp.Controllers
                 {
                     MemberShipTypes = memberShipTypes
                 };
-
 
                 return View("CustomerForm", memberShipTypes);
             }
@@ -85,7 +82,6 @@ namespace Vidly.WebApp.Controllers
             }
 
             _context.SaveChanges();
-
 
             return RedirectToAction("Index");
         }
