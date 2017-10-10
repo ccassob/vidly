@@ -25,9 +25,7 @@ namespace Vidly.WebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var customer = _context.Customers.Include(c => c.MemberShipType).ToList();
-
-            return View(customer);
+            return View();
         }
 
         // GET: Customer/Details/5
