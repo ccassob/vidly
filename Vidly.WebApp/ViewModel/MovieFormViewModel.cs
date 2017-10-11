@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using Vidly.WebApp.Models;
 
 namespace Vidly.WebApp.ViewModel
@@ -37,7 +35,6 @@ namespace Vidly.WebApp.ViewModel
             {
                 return Id != 0 ? "Edit" : "New";
             }
-
         }
 
         public MovieFormViewModel()

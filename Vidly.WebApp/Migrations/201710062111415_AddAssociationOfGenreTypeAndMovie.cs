@@ -1,8 +1,7 @@
 namespace Vidly.WebApp.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddAssociationOfGenreTypeAndMovie : DbMigration
     {
         public override void Up()
@@ -11,7 +10,7 @@ namespace Vidly.WebApp.Migrations
             CreateIndex("dbo.Movies", "GenreTypeId");
             AddForeignKey("dbo.Movies", "GenreTypeId", "dbo.GenreTypes", "Id", cascadeDelete: true);
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Movies", "GenreTypeId", "dbo.GenreTypes");

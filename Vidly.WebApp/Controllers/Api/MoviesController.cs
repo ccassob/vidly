@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Vidly.WebApp.Models;
 using Vidly.WebApp.Models.Dtos;
@@ -17,7 +14,6 @@ namespace Vidly.WebApp.Controllers.Api
         public MoviesController()
         {
             _context = new ApplicationDbContext();
-
         }
 
         //GET Api/Movies
@@ -81,7 +77,7 @@ namespace Vidly.WebApp.Controllers.Api
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
 
             if (movie == null)
-               return NotFound();
+                return NotFound();
 
             _context.Movies.Remove(movie);
             _context.SaveChanges();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using Vidly.WebApp.Models;
@@ -19,7 +20,7 @@ namespace Vidly.WebApp.Controllers.Api
         //GET Api/Customers
         public IHttpActionResult GetCustomers()
         {
-            var customers = _context.Customers.ToList().Select(customer => Mapper.Map<Customer, CustomerDto>(customer));
+            var customers = _context.Customers.Include(c => c.MemberShipType).ToList().Select(customer => Mapper.Map<Customer, CustomerDto>(customer));
 
             return Ok(customers);
         }

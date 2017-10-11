@@ -22,6 +22,17 @@
         </tr>
     </thead>
     <tbody></tbody>
+    <tfoot><tr>
+    <th>
+        Name
+    </th>
+    <th>
+        MemberShipType Name
+    </th>
+    <td>
+        Delete
+    </td>
+</tr></tfoot>
 </table>
 
 @section scripts
@@ -38,11 +49,11 @@
                     {
                         data: "name",
                         render: function (data, type, customer) {
-                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                            return "<a href='/customer/edit/" + customer.id + "'>" + customer.name + "</a>";
                         }
                     },
                     {
-                        data: "memberShipTypeId"
+                        data: "memberShipType.name"
                     },
                     {
                         data: "id",
@@ -53,7 +64,6 @@
                 ]
 
             });
-
 
             $("#customer").on('click', ".js-delete", function () {
                 var button = $(this);

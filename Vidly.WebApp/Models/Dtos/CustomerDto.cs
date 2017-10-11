@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using Vidly.WebApp.Validations;
 
 namespace Vidly.WebApp.Models.Dtos
 {
@@ -19,6 +15,7 @@ namespace Vidly.WebApp.Models.Dtos
 
         public bool IsSubscribedToNewsletter { get; set; }
 
+        public MemberShipTypeDto MemberShipType { get; set; }
         public byte MemberShipTypeId { get; set; }
     }
 }

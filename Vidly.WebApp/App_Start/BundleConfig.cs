@@ -18,13 +18,6 @@ namespace Vidly.WebApp
                         "~/Scripts/DataTables/buttons.bootstrap.js",
                         "~/Scripts/DataTables/dataTables.bootstrap.js"
 
-
-
-                        
-                        
-                        
-                        
-                        
                         ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -37,9 +30,6 @@ namespace Vidly.WebApp
                       "~/Content/site.css",
                       "~/Content/DataTables/css/buttons.bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css"
-
-
-
 
                       ));
         }

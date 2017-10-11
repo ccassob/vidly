@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using Vidly.WebApp.Models;
 using Vidly.WebApp.Validations;
 
@@ -47,13 +45,10 @@ namespace Vidly.WebApp.ViewModel
 
         public string Title
         {
-
             get
             {
                 return Id != 0 ? "Edit" : "New";
-
             }
         }
-
     }
 }

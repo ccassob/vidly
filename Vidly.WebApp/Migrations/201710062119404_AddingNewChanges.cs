@@ -1,8 +1,7 @@
 namespace Vidly.WebApp.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddingNewChanges : DbMigration
     {
         public override void Up()
@@ -10,7 +9,7 @@ namespace Vidly.WebApp.Migrations
             DropForeignKey("dbo.Movies", "GenreTypeId", "dbo.GenreTypes");
             DropIndex("dbo.Movies", new[] { "GenreTypeId" });
         }
-        
+
         public override void Down()
         {
             CreateIndex("dbo.Movies", "GenreTypeId");

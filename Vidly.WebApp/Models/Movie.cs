@@ -14,7 +14,7 @@ namespace Vidly.WebApp.Models
         [Required]
         [Display(Name = "Date Added")]
         [DataType(DataType.Date)]
-        public DateTime DateAdded{ get; set; }
+        public DateTime DateAdded { get; set; }
 
         [Required]
         [Range(1, 20)]
@@ -25,7 +25,6 @@ namespace Vidly.WebApp.Models
         [Display(Name = "Genre Type")]
         public byte GenreTypeId { get; set; }
 
-        public GenreType GenreType{ get; set; }
-
+        public GenreType GenreType { get; set; }
     }
 }

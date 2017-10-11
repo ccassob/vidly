@@ -28,16 +28,13 @@
         @Html.LabelFor(c => c.BirthDate)
         @Html.TextBoxFor(c => c.BirthDate,"{0:dd MMM yyyy}",  new { @class = "form-control" })
         @Html.ValidationMessageFor(c => c.BirthDate)
-
     </div>
 
-   
     <div class="form-group">
         <div class="form-inline">
             @Html.CheckBoxFor(c => c.IsSubscribedToNewsletter, new { @class = "checkbox" })
             Suscribed to newsletters?
         </div>
-
     </div>
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-primary" />

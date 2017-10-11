@@ -12,6 +12,8 @@ namespace Vidly.WebApp.App_Start
             CreateMap<CustomerDto, Customer>();
             CreateMap<Movie, MovieDto>();
             CreateMap<MovieDto, Movie>();
+            CreateMap<MemberShipTypeDto, MemberShipType>();
+            CreateMap<MemberShipType, MemberShipTypeDto>();
         }
     }
 }
