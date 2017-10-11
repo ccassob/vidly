@@ -6,7 +6,7 @@ using Vidly.WebApp.ViewModel;
 
 namespace Vidly.WebApp.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class CustomerController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using Vidly.WebApp.Models;
 using Vidly.WebApp.Models.Dtos;
@@ -51,7 +49,7 @@ namespace Vidly.WebApp.Controllers.Api
             _context.SaveChanges();
             customerdto.Id = customer.Id;
 
-            return Created( new Uri(Request.RequestUri + "/" + customer.Id), customerdto);
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerdto);
         }
 
         //PUT Api/Customers/1
@@ -68,7 +66,6 @@ namespace Vidly.WebApp.Controllers.Api
 
             Mapper.Map<CustomerDto, Customer>(customerdto, customerInDb);
             _context.SaveChanges();
-
 
             return Ok();
         }

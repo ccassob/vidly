@@ -8,26 +8,70 @@
 <p>
     @Html.ActionLink("New Movie", "New", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Movie
-        </th>
-        <th>
-            Genre
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<table id="movie" class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.ActionLink(item.Name, "Edit", new { id = item.Id })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreType.Name)
-            </td>
+            <th>
+                Movie
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+    </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var table = $('#movie').DataTable({
+                ajax: {
+                    url: "api/movies",
+                    dataSrc: ""
+                },
+                "columns": [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/movies/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "stock"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-primary js-delete' data-movie-id=" + data + ">Delete</button>"
+                        }
+                    }
+                ]
+
+            });
+
+            $("#movie").on('click', ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm('Are you want to delete?', function () {
+
+                    $.ajax({
+                        url: '/api/movies/' + $(button).attr("data-movie-id"),
+                        method: 'DELETE',
+                        success: function () {
+                            table.row(button.parents("tr")).remove().draw();
+                        }
+
+                    });
+                })
+
+            })
+
+        });
+    </script>
+
+}

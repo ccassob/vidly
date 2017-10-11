@@ -16,9 +16,6 @@
             <th>
                 MemberShipType Name
             </th>
-            <th>
-                Discount Rate
-            </th>
             <td>
                 Delete
             </td>
@@ -37,7 +34,7 @@
                     url: "api/customers",
                     dataSrc: ""
                 },
-                "columns": [
+                columns: [
                     {
                         data: "name",
                         render: function (data, type, customer) {
@@ -48,9 +45,6 @@
                         data: "memberShipTypeId"
                     },
                     {
-                        data: "isSubscribedToNewsletter"
-                    },
-                    {
                         data: "id",
                         render: function (data) {
                             return "<button class='btn btn-primary js-delete' data-customer-id=" + data + ">Delete</button>"
@@ -59,6 +53,7 @@
                 ]
 
             });
+
 
             $("#customer").on('click', ".js-delete", function () {
                 var button = $(this);
