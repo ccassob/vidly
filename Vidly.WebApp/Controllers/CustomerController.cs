@@ -23,6 +23,7 @@ namespace Vidly.WebApp.Controllers
 
         // GET: Customer
         [HttpGet]
+      
         public ActionResult Index()
         {
             return View();

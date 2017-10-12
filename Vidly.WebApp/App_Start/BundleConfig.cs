@@ -14,8 +14,6 @@ namespace Vidly.WebApp
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
-
-                        "~/Scripts/DataTables/buttons.bootstrap.js",
                         "~/Scripts/DataTables/dataTables.bootstrap.js"
 
                         ));
@@ -28,7 +26,6 @@ namespace Vidly.WebApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/DataTables/css/buttons.bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css"
 
                       ));

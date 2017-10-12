@@ -18,6 +18,7 @@ namespace Vidly.WebApp.Controllers.Api
         }
 
         //GET Api/Customers
+        [System.Web.Mvc.OutputCache(Duration = 50, Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public IHttpActionResult GetCustomers()
         {
             var customers = _context.Customers.Include(c => c.MemberShipType).ToList().Select(customer => Mapper.Map<Customer, CustomerDto>(customer));
