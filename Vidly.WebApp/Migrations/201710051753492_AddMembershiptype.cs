@@ -18,7 +18,7 @@ namespace Vidly.WebApp.Migrations
                 .PrimaryKey(t => t.Id);
 
             AddColumn("dbo.Customers", "MemberShipTypeId", c => c.Byte(nullable: false));
-            CreateIndex("dbo.Customers", "MemberShipTypeId");
+            CreateIndex("dbo.Customers", "MemberShipTypeId", unique: true);
             AddForeignKey("dbo.Customers", "MemberShipTypeId", "dbo.MemberShipTypes", "Id", cascadeDelete: true);
         }
 

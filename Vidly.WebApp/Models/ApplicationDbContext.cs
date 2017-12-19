@@ -19,5 +19,13 @@ namespace Vidly.WebApp.Models
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Customer>()
+            //    .HasRequired(c => c.MemberShipType)
+            //    .WithRequiredPrincipal();
+
+        }
     }
 }

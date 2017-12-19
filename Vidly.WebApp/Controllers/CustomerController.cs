@@ -33,7 +33,7 @@ namespace Vidly.WebApp.Controllers
         public ActionResult Details(int id)
         {
             var customer = _context.Customers.Include(c => c.MemberShipType).SingleOrDefault(c => c.Id == id);
-
+            _context.Customers.DefaultIfEmpty();
             return View(customer);
         }
 
@@ -91,13 +91,15 @@ namespace Vidly.WebApp.Controllers
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
+ 
+            if (customer == null)
+                return HttpNotFound();
+
             var newCustomerViewModel = new CustomerFormViewModel(customer)
             {
                 MemberShipTypes = _context.MemberShipTypes
             };
 
-            if (customer == null)
-                return HttpNotFound();
 
             return View("CustomerForm", newCustomerViewModel);
         }
